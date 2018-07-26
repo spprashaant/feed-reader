@@ -9,6 +9,7 @@
  * to ensure they don't run until the DOM is ready.
  */
 $(function() {
+
     /* This is our first test suite - a test suite just contains
     * a related set of tests. This suite is all about the RSS
     * feeds definitions, the allFeeds variable in our application.
@@ -54,20 +55,29 @@ $(function() {
     /* TODO: Write a new test suite named "The menu" */
         describe("The menu", function(){
 
-
+        
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
          it("is hidden by default", function(){
-            expect(menuIcon).not.toHaveClass("menu-hidden");
+            let body =document.getElementsByTagName('body')[0];
+            expect(body).toHaveClass("menu-hidden");
          });
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
+          it("toggles display when clicked", function(){
+            let body =document.getElementsByTagName('body')[0];
+            let menuIcon = $('.menu-icon-link');
+            menuIcon.click();
+            expect(body).not.toHaveClass("menu-hidden");
+            menuIcon.click();
+            expect(body).toHaveClass("menu-hidden");
+          });
         });
     /* TODO: Write a new test suite named "Initial Entries" */
 
