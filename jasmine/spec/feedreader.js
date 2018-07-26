@@ -92,17 +92,41 @@ $(function() {
                 done();
             });
         });
-        it("has atleast one entry after loadFeed runs", function(){
+        it("has atleast one entry after loadFeed runs", function(done){
             let container = $('.feed');
             let feeds = container.find('.entry');
             expect(feeds.length).toBeGreaterThan(0);
+            done();
         });
-         
+         });
     /* TODO: Write a new test suite named "New Feed Selection" */
-
+    describe("New Feed Selection", function(){
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+         var i = 0;
+         var beforeContent,currentFeedText;
+         var container, feeds;
+        beforeEach(function(done){
+            loadFeed(i, function(){
+                done();
+            });
+            i++;
+        });
+        it("load initial content", function(done){
+            container = $('.feed');
+            feeds = container.find('.entry');
+            beforeContent = feeds[0].innerText;
+            done();
+        });
+        it("new feed changes content", function(done){
+            container = $('.feed');
+            feeds = container.find('.entry');
+            currentFeedText = feeds[0].innerText;
+            expect(currentFeedText).not.toEqual(beforeContent);
+            done();
+        });
+        
     });
 }());
