@@ -99,30 +99,26 @@ $(function() {
         /* This is a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          */
-         var i = 0;
-         var beforeContent,currentFeedText;
-         var container, feeds;
+        var beforeContent,currentFeedText, feeds;
+        var container = $('.feed');
         beforeEach(function(done){
-            loadFeed(i, function(){
-                done();
+            loadFeed(0, function(){
+                feeds = container.find('.entry');
+                beforeContent = feeds[0].innerText;
+                loadFeed(1, function(){
+                    feeds = container.find('.entry');
+                    currentFeedText = feeds[0].innerText;
+                    done();
+                });
             });
-            i++;
         });
         afterEach(function(done){
             loadFeed(0, function(){
                 done();
             });
         });
-        it("load initial content", function(done){
-            container = $('.feed');
-            feeds = container.find('.entry');
-            beforeContent = feeds[0].innerText;
-            done();
-        });
+
         it("new feed changes content", function(done){
-            container = $('.feed');
-            feeds = container.find('.entry');
-            currentFeedText = feeds[0].innerText;
             expect(currentFeedText).not.toEqual(beforeContent);
             done();
         });
