@@ -30,10 +30,10 @@ $(function() {
          * and that the URL is not empty.
          */
          it('has non empty feed urls', function(){
-            for (var i = allFeeds.length - 1; i >= 0; i--) {
-                expect(allFeeds[i].url).toBeDefined();
-                expect(allFeeds[i].url.length).not.toBe(0);
-            }
+            allFeeds.forEach(function(feed){
+                expect(feed.url).toBeDefined();
+                expect(feed.url.length).not.toBe(0);
+            });
          });
 
         /* This is a test that loops through each feed
