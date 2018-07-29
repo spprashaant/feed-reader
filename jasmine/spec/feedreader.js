@@ -87,11 +87,10 @@ $(function() {
                 done();
             });
         });
-        it("has atleast one entry after loadFeed runs", function(done){
+        it("has atleast one entry after loadFeed runs", function(){
             let container = $('.feed');
             let feeds = container.find('.entry');
             expect(feeds.length).toBeGreaterThan(0);
-            done();
         });
          });
     /* A test suite for testing new feed selection" */
